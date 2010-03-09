@@ -58,12 +58,6 @@ deadRadius;
 		self.thumbRadius = 32.0f;
 		self.deadRadius = 0.0f;
 		
-		//Automatically sets deadzone if DPad, required for operation
-		if (isDPad == YES){
-			hasDeadzone = YES;
-			self.deadRadius = 10.0f;
-		}
-		
 		//Cocos node stuff
 		position_ = rect.origin;
 }
@@ -120,6 +114,15 @@ deadRadius;
 	
 	// Update the thumb's position
 	stickPosition = ccp(dx, dy);
+}
+
+- (void) setIsDPad:(BOOL)b
+{
+	isDPad = b;
+	if(isDPad){
+		hasDeadzone = YES;
+		self.deadRadius = 10.0f;
+	}
 }
 
 - (void) setJoystickRadius:(float)r
