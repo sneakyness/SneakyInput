@@ -1,28 +1,28 @@
 
-#import "ColoredCircleSprite.h"
+#import "ColoredSquareSprite.h"
 
-@interface ColoredCircleSprite (privateMethods)
+@interface ColoredSquareSprite (privateMethods)
 - (void) updateContentSize;
 - (void) updateColor;
 @end
 
 
-@implementation ColoredCircleSprite
+@implementation ColoredSquareSprite
 
-@synthesize radius=radius_;
+@synthesize size=size_;
 	// Opacity and RGB color protocol
 @synthesize opacity=opacity_, color=color_;
 @synthesize blendFunc=blendFunc_;
 
-+ (id) circleWithColor: (ccColor4B)color radius:(GLfloat)r
++ (id) squareWithColor: (ccColor4B)color size:(CGSize)sz
 {
-	return [[[self alloc] initWithColor:color radius:r] autorelease];
+	return [[[self alloc] initWithColor:color size:sz] autorelease];
 }
 
-- (id) initWithColor:(ccColor4B)color radius:(GLfloat)r
+- (id) initWithColor:(ccColor4B)color size:(CGSize)sz
 {
 	if( (self=[self init]) ) {
-		self.radius	= r;
+		self.size = sz;
 		
 		color_.r = color.r;
 		color_.g = color.g;
@@ -34,15 +34,14 @@
 
 - (void) dealloc
 {
-	free(circleVertices_);
+	free(squareVertices_);
 	[super dealloc];
 }
 
 - (id) init
 {
 	if((self = [super init])){
-		radius_				= 10.0f;
-		numberOfSegments	= 36U;
+		size_				= CGSizeMake(10.0f, 10.0f);
 		
 			// default blend function
 		blendFunc_ = (ccBlendFunc) { CC_BLEND_SRC, CC_BLEND_DST };
@@ -52,47 +51,46 @@
 		color_.b = 0U;
 		opacity_ = 255U;
 		
-		circleVertices_ = malloc(sizeof(GLfloat)*2*(numberOfSegments));
-		if(!circleVertices_){
-			NSLog(@"Ack!! malloc in colored circle failed");
+		squareVertices_ = malloc(sizeof(GLfloat)*2*(4));
+		if(!squareVertices_){
+			NSLog(@"Ack!! malloc in colored square failed");
 			[self release];
 			return nil;
 		}
-		memset(circleVertices_, 0, sizeof(GLfloat)*2*(numberOfSegments));
+		memset(squareVertices_, 0, sizeof(GLfloat)*2*(4));
 		
-		self.radius			= radius_;
+		self.size = size_;
 	}
 	return self;
 }
 
--(void) setRadius: (float) size
+- (void) setSize: (CGSize)sz
 {
-	radius_ = size;
-	const float theta_inc	= 2.0f * 3.14159265359f/numberOfSegments;
-	float theta				= 0.0f;
+	size_ = sz;
 	
-	for(int i=0; i<numberOfSegments; i++)
-	{
-		float j = radius_ * cosf(theta) + position_.x;
-		float k = radius_ * sinf(theta) + position_.y;
-		
-		circleVertices_[i*2]	= j;
-		circleVertices_[i*2+1]	= k;
-		
-		theta += theta_inc;
-	}
+	squareVertices_[0] = position_.x - size_.width;
+	squareVertices_[1] = position_.y - size_.height;
+	
+	squareVertices_[2] = position_.x + size_.width;
+	squareVertices_[3] = position_.y - size_.height;
+	
+	squareVertices_[4] = position_.x - size_.width;
+	squareVertices_[5] = position_.y + size_.height;
+	
+	squareVertices_[6] = position_.x + size_.width;
+	squareVertices_[7] = position_.y + size_.height;
 	
 	[self updateContentSize];
 }
 
--(void) setContentSize: (CGSize) size
+-(void) setContentSize: (CGSize)sz
 {
-	self.radius	= size.width/2;
+	self.size = sz;
 }
 
 - (void) updateContentSize
 {
-	[super setContentSize:CGSizeMake(radius_*2, radius_*2)];
+	[super setContentSize:size_];
 }
 
 - (void)draw
@@ -104,7 +102,7 @@
 	glDisableClientState(GL_COLOR_ARRAY);
 	glDisable(GL_TEXTURE_2D);
 	
-	glVertexPointer(2, GL_FLOAT, 0, circleVertices_);
+	glVertexPointer(2, GL_FLOAT, 0, squareVertices_);
 	glColor4f(color_.r/255.0f, color_.g/255.0f, color_.b/255.0f, opacity_/255.0f);
 	
 	BOOL newBlend = NO;
@@ -119,7 +117,7 @@
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 	
-	glDrawArrays(GL_TRIANGLE_FAN, 0, numberOfSegments);
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	
 	if( newBlend )
 		glBlendFunc(CC_BLEND_SRC, CC_BLEND_DST);
@@ -148,14 +146,12 @@
 
 - (BOOL) containsPoint:(CGPoint)point
 {
-	float dSq = point.x * point.x + point.y * point.y;
-	float rSq = radius_ * radius_;
-	return (dSq <= rSq );
+	return (CGRectContainsPoint([self boundingBox], point));
 }
 
 - (NSString*) description
 {
-	return [NSString stringWithFormat:@"<%@ = %08X | Tag = %i | Color = %02X%02X%02X%02X | Radius = %1.2f>", [self class], self, tag_, color_.r, color_.g, color_.b, opacity_, radius_];
+	return [NSString stringWithFormat:@"<%@ = %08X | Tag = %i | Color = %02X%02X%02X%02X | Size = %f,%f>", [self class], self, tag_, color_.r, color_.g, color_.b, opacity_, size_.width, size_.height];
 }
 
 @end

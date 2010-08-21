@@ -1,30 +1,31 @@
 #import "cocos2d.h"
 
-@interface ColoredCircleSprite : CCNode <CCRGBAProtocol, CCBlendProtocol> {
-	float		radius_;
+@interface ColoredSquareSprite : CCNode <CCRGBAProtocol, CCBlendProtocol> {
+	CGSize		size_;
 	GLubyte		opacity_;
 	ccColor3B	color_;
 	
-	NSUInteger numberOfSegments;
-	GLfloat *circleVertices_;
+	GLfloat		*squareVertices_;
 	
 	ccBlendFunc	blendFunc_;
 }
 
-@property (nonatomic,readwrite) float radius;
+@property (nonatomic,readwrite) CGSize size;
 
 /** Opacity: conforms to CCRGBAProtocol protocol */
 @property (nonatomic,readonly) GLubyte opacity;
+
 /** Opacity: conforms to CCRGBAProtocol protocol */
 @property (nonatomic,readonly) ccColor3B color;
+
 /** BlendFunction. Conforms to CCBlendProtocol protocol */
 @property (nonatomic,readwrite) ccBlendFunc blendFunc;
 
-/** creates a Circle with color and radius */
-+ (id) circleWithColor: (ccColor4B)color radius:(GLfloat)r;
+/** creates a Square with color and size */
++ (id) squareWithColor: (ccColor4B)color size:(CGSize)sz;
 
 /** initializes a Circle with color and radius */
-- (id) initWithColor:(ccColor4B)color radius:(GLfloat)r;
+- (id) initWithColor:(ccColor4B)color size:(CGSize)sz;
 
 - (BOOL) containsPoint:(CGPoint)point;
 
