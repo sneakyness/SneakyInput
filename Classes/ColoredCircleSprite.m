@@ -73,8 +73,8 @@
 	
 	for(int i=0; i<numberOfSegments; i++)
 	{
-		float j = radius_ * cosf(theta) + position_.x;
-		float k = radius_ * sinf(theta) + position_.y;
+		float j = radius_ * [[CCDirector sharedDirector] contentScaleFactor] * cosf(theta) + position_.x;
+		float k = radius_ * [[CCDirector sharedDirector] contentScaleFactor] * sinf(theta) + position_.y;
 		
 		circleVertices_[i*2]	= j;
 		circleVertices_[i*2+1]	= k;
