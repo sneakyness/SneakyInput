@@ -66,12 +66,18 @@ deadRadius;
 
 - (void) onEnterTransitionDidFinish
 {
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:1 swallowsTouches:YES];
+#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+#endif
 }
 
 - (void) onExit
 {
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 	[[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
+#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+#endif
 }
 
 -(void)updateVelocity:(CGPoint)point
@@ -145,6 +151,7 @@ deadRadius;
 
 #pragma mark Touch Delegate
 
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
 	CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView:[touch view]]];
@@ -184,5 +191,7 @@ deadRadius;
 {
 	[self ccTouchEnded:touch withEvent:event];
 }
+#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+#endif
 
 @end
