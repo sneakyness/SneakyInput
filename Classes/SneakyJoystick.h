@@ -13,7 +13,12 @@
 
 #import "cocos2d.h"
 
+#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 @interface SneakyJoystick : CCNode <CCTargetedTouchDelegate> {
+#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+@interface SneakyJoystick : CCNode {
+#endif
+	
 	CGPoint stickPosition;
 	float degrees;
 	CGPoint velocity;
