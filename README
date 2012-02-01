@@ -1,0 +1,2 @@
+Basically I have adapted the SneakyInput library to work with Cocos2d V2.0 and above. 
+Achtung, in this branch the SneakyInput classes only have been changed.
