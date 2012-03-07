@@ -5,7 +5,7 @@
 	GLubyte		opacity_;
 	ccColor3B	color_;
 	
-	GLfloat		*squareVertices_;
+	CGPoint		*squareVertices_;
 	
 	ccBlendFunc	blendFunc_;
 }
