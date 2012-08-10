@@ -181,7 +181,7 @@ deadRadius;
 {
 	CGPoint location = CGPointZero;
 	if(!autoCenter){
-		CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView:[touch view]]];
+		location = [[CCDirector sharedDirector] convertToGL:[touch locationInView:[touch view]]];
 		location = [self convertToNodeSpace:location];
 	}
 	[self updateVelocity:location];
