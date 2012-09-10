@@ -16,9 +16,9 @@
 	SneakyJoystick *joystick;
 }
 
-@property (nonatomic, retain) CCSprite *backgroundSprite;
-@property (nonatomic, retain) CCSprite *thumbSprite;
-@property (nonatomic, retain) SneakyJoystick *joystick;
+@property (nonatomic, strong) CCSprite *backgroundSprite;
+@property (nonatomic, strong) CCSprite *thumbSprite;
+@property (nonatomic, strong) SneakyJoystick *joystick;
 
 - (void) updatePositions;
 

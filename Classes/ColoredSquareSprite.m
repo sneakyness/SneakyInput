@@ -16,7 +16,7 @@
 
 + (id) squareWithColor: (ccColor4B)color size:(CGSize)sz
 {
-	return [[[self alloc] initWithColor:color size:sz] autorelease];
+	return [[self alloc] initWithColor:color size:sz];
 }
 
 - (id) initWithColor:(ccColor4B)color size:(CGSize)sz
@@ -35,7 +35,6 @@
 - (void) dealloc
 {
 	free(squareVertices_);
-	[super dealloc];
 }
 
 - (id) init
@@ -54,7 +53,6 @@
 		squareVertices_ = (CGPoint*) malloc(sizeof(CGPoint)*(4));
 		if(!squareVertices_){
 			NSLog(@"Ack!! malloc in colored square failed");
-			[self release];
 			return nil;
 		}
 		memset(squareVertices_, 0, sizeof(CGPoint)*(4));
@@ -88,7 +86,7 @@
 
 - (void)draw
 {		
-    ccDrawFilledPoly(squareVertices_, 4, ccc4f(color_.r/255.0f, color_.g/255.0f, color_.b/255.0f, opacity_/255.0f));
+    ccDrawSolidPoly(squareVertices_, 4, ccc4f(color_.r/255.0f, color_.g/255.0f, color_.b/255.0f, opacity_/255.0f));
 }
 
 #pragma mark Protocols
@@ -114,7 +112,7 @@
 
 - (NSString*) description
 {
-	return [NSString stringWithFormat:@"<%@ = %08X | Tag = %i | Color = %02X%02X%02X%02X | Size = %f,%f>", [self class], self, tag_, color_.r, color_.g, color_.b, opacity_, size_.width, size_.height];
+	return [NSString stringWithFormat:@"<%@ = %8@ | Tag = %i | Color = %02X%02X%02X%02X | Size = %f,%f>", [self class], self, tag_, color_.r, color_.g, color_.b, opacity_, size_.width, size_.height];
 }
 
 @end

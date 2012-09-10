@@ -16,7 +16,7 @@
 
 + (id) circleWithColor: (ccColor4B)color radius:(GLfloat)r
 {
-	return [[[self alloc] initWithColor:color radius:r] autorelease];
+	return [[self alloc] initWithColor:color radius:r];
 }
 
 - (id) initWithColor:(ccColor4B)color radius:(GLfloat)r
@@ -35,7 +35,6 @@
 - (void) dealloc
 {
 	free(circleVertices_);
-	[super dealloc];
 }
 
 - (id) init
@@ -57,7 +56,6 @@
 		circleVertices_ = (CGPoint*) malloc(sizeof(CGPoint)*(numberOfSegments));
 		if(!circleVertices_){
 			NSLog(@"Ack!! malloc in colored circle failed");
-			[self release];
 			return nil;
 		}
 		memset(circleVertices_, 0, sizeof(CGPoint)*(numberOfSegments));
@@ -103,7 +101,7 @@
 
 - (void)draw
 {		
-	ccDrawFilledPoly(circleVertices_, numberOfSegments, ccc4f(color_.r/255.0f, color_.g/255.0f, color_.b/255.0f, opacity_/255.0f));
+	ccDrawSolidPoly(circleVertices_, numberOfSegments, ccc4f(color_.r/255.0f, color_.g/255.0f, color_.b/255.0f, opacity_/255.0f));
 }
 
 #pragma mark Protocols
@@ -131,7 +129,7 @@
 
 - (NSString*) description
 {
-	return [NSString stringWithFormat:@"<%@ = %08X | Tag = %i | Color = %02X%02X%02X%02X | Radius = %1.2f>", [self class], self, tag_, color_.r, color_.g, color_.b, opacity_, radius_];
+	return [NSString stringWithFormat:@"<%@ = %8@ | Tag = %i | Color = %02X%02X%02X%02X | Radius = %1.2f>", [self class], self, tag_, color_.r, color_.g, color_.b, opacity_, radius_];
 }
 
 @end

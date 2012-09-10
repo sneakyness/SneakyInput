@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "cocos2d.h"
 
-@interface SneakyInput_0_4_0AppDelegate : NSObject <UIApplicationDelegate> {
-	UIWindow *window;
+@interface SneakyInput_0_4_0AppDelegate : NSObject <UIApplicationDelegate, CCDirectorDelegate>
+{
+	UIWindow *window_;
+	UINavigationController *navController_;
+	
+	CCDirectorIOS	* __weak director_;							// weak ref
 }
 
-@property (nonatomic, retain) UIWindow *window;
+@property (nonatomic, strong) UIWindow *window;
+@property (readonly) UINavigationController *navController;
+@property (weak, readonly) CCDirectorIOS *director;
 
 @end

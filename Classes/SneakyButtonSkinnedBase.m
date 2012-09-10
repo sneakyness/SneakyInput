@@ -13,15 +13,6 @@
 
 @synthesize defaultSprite, activatedSprite, disabledSprite, pressSprite, button;
 
-- (void) dealloc
-{
-	[defaultSprite release];
-	[activatedSprite release];
-	[disabledSprite release];
-	[pressSprite release];
-	[button release];
-	[super dealloc];
-}
 
 - (id) init
 {
@@ -82,9 +73,8 @@
 	if(defaultSprite){
 		if(defaultSprite.parent)
 			[defaultSprite.parent removeChild:defaultSprite cleanup:YES];
-		[defaultSprite release];
 	}
-	defaultSprite = [aSprite retain];
+	defaultSprite = aSprite;
 	if(aSprite){
 		[self addChild:defaultSprite z:0];
 		
@@ -97,9 +87,8 @@
 	if(activatedSprite){
 		if(activatedSprite.parent)
 			[activatedSprite.parent removeChild:activatedSprite cleanup:YES];
-		[activatedSprite release];
 	}
-	activatedSprite = [aSprite retain];
+	activatedSprite = aSprite;
 	if(aSprite){
 		[self addChild:activatedSprite z:1];
 		
@@ -112,9 +101,8 @@
 	if(disabledSprite){
 		if(disabledSprite.parent)
 			[disabledSprite.parent removeChild:disabledSprite cleanup:YES];
-		[disabledSprite release];
 	}
-	disabledSprite = [aSprite retain];
+	disabledSprite = aSprite;
 	if(aSprite){
 		[self addChild:disabledSprite z:2];
 		
@@ -127,9 +115,8 @@
 	if(pressSprite){
 		if(pressSprite.parent)
 			[pressSprite.parent removeChild:pressSprite cleanup:YES];
-		[pressSprite release];
 	}
-	pressSprite = [aSprite retain];
+	pressSprite = aSprite;
 	if(aSprite){
 		[self addChild:pressSprite z:3];
 		
@@ -142,9 +129,8 @@
 	if(button){
 		if(button.parent)
 			[button.parent removeChild:button cleanup:YES];
-		[button release];
 	}
-	button = [aButton retain];
+	button = aButton;
 	if(aButton){
 		[self addChild:button z:4];
 		if(defaultSprite)

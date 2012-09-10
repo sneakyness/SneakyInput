@@ -41,21 +41,21 @@
 	if( (self=[super init] )) {
 		self.isTouchEnabled = YES;
 		
-		SneakyJoystickSkinnedBase *leftJoy = [[[SneakyJoystickSkinnedBase alloc] init] autorelease];
+		SneakyJoystickSkinnedBase *leftJoy = [[SneakyJoystickSkinnedBase alloc] init];
 		leftJoy.position = ccp(64,64);
 		leftJoy.backgroundSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 0, 0, 128) radius:64];
 		leftJoy.thumbSprite = [ColoredCircleSprite circleWithColor:ccc4(0, 0, 255, 200) radius:32];
 		leftJoy.joystick = [[SneakyJoystick alloc] initWithRect:CGRectMake(0,0,128,128)];
-		leftJoystick = [leftJoy.joystick retain];
+		leftJoystick = leftJoy.joystick;
 		[self addChild:leftJoy];
 		
-		SneakyButtonSkinnedBase *rightBut = [[[SneakyButtonSkinnedBase alloc] init] autorelease];
+		SneakyButtonSkinnedBase *rightBut = [[SneakyButtonSkinnedBase alloc] init];
 		rightBut.position = ccp(448,32);
 		rightBut.defaultSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 255, 255, 128) radius:32];
 		rightBut.activatedSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 255, 255, 255) radius:32];
 		rightBut.pressSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 0, 0, 255) radius:32];
 		rightBut.button = [[SneakyButton alloc] initWithRect:CGRectMake(0, 0, 64, 64)];
-		rightButton = [rightBut.button retain];
+		rightButton = rightBut.button;
 		rightButton.isToggleable = YES;
 		[self addChild:rightBut];
 		
@@ -67,13 +67,4 @@
 }
 
 // on "dealloc" you need to release all your retained objects
-- (void) dealloc
-{
-	// in case you have something to dealloc, do it in this method
-	// in this particular example nothing needs to be released.
-	// cocos2d will automatically release all the children (Label)
-	
-	// don't forget to call "super dealloc"
-	[super dealloc];
-}
 @end

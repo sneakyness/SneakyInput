@@ -37,10 +37,6 @@ joystickRadius,
 thumbRadius,
 deadRadius;
 
-- (void) dealloc
-{
-	[super dealloc];
-}
 
 -(id)initWithRect:(CGRect)rect
 {
