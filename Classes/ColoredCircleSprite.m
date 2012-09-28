@@ -16,7 +16,7 @@
 
 + (id) circleWithColor: (ccColor4B)color radius:(GLfloat)r
 {
-	return [[[self alloc] initWithColor:color radius:r] autorelease];
+	return [[self alloc] initWithColor:color radius:r];
 }
 
 - (id) initWithColor:(ccColor4B)color radius:(GLfloat)r
@@ -35,7 +35,6 @@
 - (void) dealloc
 {
 	free(circleVertices_);
-	[super dealloc];
 }
 
 - (id) init
@@ -44,6 +43,8 @@
 		radius_				= 10.0f;
 		numberOfSegments	= 36U;
 		
+        //self.shaderProgram = [[CCShaderCache sharedShaderCache] programForKey:kCCShader_PositionColor];
+        
 			// default blend function
 		blendFunc_ = (ccBlendFunc) { CC_BLEND_SRC, CC_BLEND_DST };
 		
@@ -52,13 +53,12 @@
 		color_.b = 0U;
 		opacity_ = 255U;
 		
-		circleVertices_ = malloc(sizeof(GLfloat)*2*(numberOfSegments));
+		circleVertices_ = (CGPoint*) malloc(sizeof(CGPoint)*(numberOfSegments));
 		if(!circleVertices_){
 			NSLog(@"Ack!! malloc in colored circle failed");
-			[self release];
 			return nil;
 		}
-		memset(circleVertices_, 0, sizeof(GLfloat)*2*(numberOfSegments));
+		memset(circleVertices_, 0, sizeof(CGPoint)*(numberOfSegments));
 		
 		self.radius			= radius_;
 	}
@@ -81,8 +81,7 @@
 		float k = radius_ * sinf(theta) + position_.y;
 #endif				
 		
-		circleVertices_[i*2]	= j;
-		circleVertices_[i*2+1]	= k;
+		circleVertices_[i] = ccp(j,k);
 		
 		theta += theta_inc;
 	}
@@ -102,37 +101,7 @@
 
 - (void)draw
 {		
-		// Default GL states: GL_TEXTURE_2D, GL_VERTEX_ARRAY, GL_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY
-		// Needed states: GL_VERTEX_ARRAY
-		// Unneeded states: GL_COLOR_ARRAY, GL_TEXTURE_2D, GL_TEXTURE_COORD_ARRAY
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
-	glDisable(GL_TEXTURE_2D);
-	
-	glVertexPointer(2, GL_FLOAT, 0, circleVertices_);
-	glColor4f(color_.r/255.0f, color_.g/255.0f, color_.b/255.0f, opacity_/255.0f);
-	
-	BOOL newBlend = NO;
-	if( blendFunc_.src != CC_BLEND_SRC || blendFunc_.dst != CC_BLEND_DST ) {
-		newBlend = YES;
-		glBlendFunc(blendFunc_.src, blendFunc_.dst);
-	}else if( opacity_ == 255 ) {
-		newBlend = YES;
-		glBlendFunc(GL_ONE, GL_ZERO);
-	}else{
-		newBlend = YES;
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	}
-	
-	glDrawArrays(GL_TRIANGLE_FAN, 0, numberOfSegments);
-	
-	if( newBlend )
-		glBlendFunc(CC_BLEND_SRC, CC_BLEND_DST);
-	
-		// restore default GL state
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glEnable(GL_TEXTURE_2D);
+	ccDrawSolidPoly(circleVertices_, numberOfSegments, ccc4f(color_.r/255.0f, color_.g/255.0f, color_.b/255.0f, opacity_/255.0f));
 }
 
 #pragma mark Protocols
@@ -160,7 +129,7 @@
 
 - (NSString*) description
 {
-	return [NSString stringWithFormat:@"<%@ = %08X | Tag = %i | Color = %02X%02X%02X%02X | Radius = %1.2f>", [self class], self, tag_, color_.r, color_.g, color_.b, opacity_, radius_];
+	return [NSString stringWithFormat:@"<%@ = %8@ | Tag = %i | Color = %02X%02X%02X%02X | Radius = %1.2f>", [self class], self, tag_, color_.r, color_.g, color_.b, opacity_, radius_];
 }
 
 @end

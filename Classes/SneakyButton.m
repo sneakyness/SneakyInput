@@ -14,12 +14,12 @@
 
 - (void) onEnterTransitionDidFinish
 {
-	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:1 swallowsTouches:YES];
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1 swallowsTouches:YES];
 }
 
 - (void) onExit
 {
-	[[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
 }
 
 -(id)initWithRect:(CGRect)rect{

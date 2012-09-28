@@ -13,13 +13,6 @@
 
 @synthesize backgroundSprite, thumbSprite, joystick;
 
-- (void) dealloc
-{
-	[backgroundSprite release];
-	[thumbSprite release];
-	[joystick release];
-	[super dealloc];
-}
 
 - (id) init
 {
@@ -52,9 +45,8 @@
 	if(backgroundSprite){
 		if(backgroundSprite.parent)
 			[backgroundSprite.parent removeChild:backgroundSprite cleanup:YES];
-		[backgroundSprite release];
 	}
-	backgroundSprite = [aSprite retain];
+	backgroundSprite = aSprite;
 	if(aSprite){
 		[self addChild:backgroundSprite z:0];
 		
@@ -67,9 +59,8 @@
 	if(thumbSprite){
 		if(thumbSprite.parent)
 			[thumbSprite.parent removeChild:thumbSprite cleanup:YES];
-		[thumbSprite release];
 	}
-	thumbSprite = [aSprite retain];
+	thumbSprite = aSprite;
 	if(aSprite){
 		[self addChild:thumbSprite z:1];
 		
@@ -82,9 +73,8 @@
 	if(joystick){
 		if(joystick.parent)
 			[joystick.parent removeChild:joystick cleanup:YES];
-		[joystick release];
 	}
-	joystick = [aJoystick retain];
+	joystick = aJoystick;
 	if(aJoystick){
 		[self addChild:joystick z:2];
 		if(thumbSprite)
