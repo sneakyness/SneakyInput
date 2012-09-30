@@ -50,7 +50,7 @@
 		[self addChild:leftJoy];
 		
 		SneakyButtonSkinnedBase *rightBut = [[SneakyButtonSkinnedBase alloc] init];
-		rightBut.position = ccp(448,32);
+		rightBut.position = ccp(256,32);
 		rightBut.defaultSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 255, 255, 128) radius:32];
 		rightBut.activatedSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 255, 255, 255) radius:32];
 		rightBut.pressSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 0, 0, 255) radius:32];
