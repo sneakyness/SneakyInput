@@ -74,8 +74,8 @@
 	for(int i=0; i<numberOfSegments; i++)
 	{
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-		float j = radius_ * [[CCDirector sharedDirector] contentScaleFactor] * cosf(theta) + position_.x;
-		float k = radius_ * [[CCDirector sharedDirector] contentScaleFactor] * sinf(theta) + position_.y;
+		float j = radius_ * cosf(theta) + position_.x;
+		float k = radius_ * sinf(theta) + position_.y;
 #elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
 		float j = radius_ * cosf(theta) + position_.x;
 		float k = radius_ * sinf(theta) + position_.y;
