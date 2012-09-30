@@ -37,10 +37,6 @@ joystickRadius,
 thumbRadius,
 deadRadius;
 
-- (void) dealloc
-{
-	[super dealloc];
-}
 
 -(id)initWithRect:(CGRect)rect
 {
@@ -67,7 +63,7 @@ deadRadius;
 - (void) onEnterTransitionDidFinish
 {
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:1 swallowsTouches:YES];
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1 swallowsTouches:YES];
 #elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
 #endif
 }
@@ -75,7 +71,7 @@ deadRadius;
 - (void) onExit
 {
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-	[[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
 #elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
 #endif
 }

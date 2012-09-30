@@ -6,7 +6,7 @@
 	ccColor3B	color_;
 	
 	NSUInteger numberOfSegments;
-	GLfloat *circleVertices_;
+    CGPoint *circleVertices_;
 	
 	ccBlendFunc	blendFunc_;
 }

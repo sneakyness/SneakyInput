@@ -16,7 +16,7 @@
 
 + (id) squareWithColor: (ccColor4B)color size:(CGSize)sz
 {
-	return [[[self alloc] initWithColor:color size:sz] autorelease];
+	return [[self alloc] initWithColor:color size:sz];
 }
 
 - (id) initWithColor:(ccColor4B)color size:(CGSize)sz
@@ -35,7 +35,6 @@
 - (void) dealloc
 {
 	free(squareVertices_);
-	[super dealloc];
 }
 
 - (id) init
@@ -51,13 +50,12 @@
 		color_.b = 0U;
 		opacity_ = 255U;
 		
-		squareVertices_ = malloc(sizeof(GLfloat)*2*(4));
+		squareVertices_ = (CGPoint*) malloc(sizeof(CGPoint)*(4));
 		if(!squareVertices_){
 			NSLog(@"Ack!! malloc in colored square failed");
-			[self release];
 			return nil;
 		}
-		memset(squareVertices_, 0, sizeof(GLfloat)*2*(4));
+		memset(squareVertices_, 0, sizeof(CGPoint)*(4));
 		
 		self.size = size_;
 	}
@@ -68,17 +66,10 @@
 {
 	size_ = sz;
 	
-	squareVertices_[0] = position_.x - size_.width;
-	squareVertices_[1] = position_.y - size_.height;
-	
-	squareVertices_[2] = position_.x + size_.width;
-	squareVertices_[3] = position_.y - size_.height;
-	
-	squareVertices_[4] = position_.x - size_.width;
-	squareVertices_[5] = position_.y + size_.height;
-	
-	squareVertices_[6] = position_.x + size_.width;
-	squareVertices_[7] = position_.y + size_.height;
+    squareVertices_[0] = ccp(position_.x - size_.width,position_.y - size_.height);
+    squareVertices_[1] = ccp(position_.x + size_.width,position_.y - size_.height);
+    squareVertices_[2] = ccp(position_.x - size_.width,position_.y + size_.height);
+    squareVertices_[3] = ccp(position_.x + size_.width,position_.y + size_.height);
 	
 	[self updateContentSize];
 }
@@ -95,37 +86,7 @@
 
 - (void)draw
 {		
-		// Default GL states: GL_TEXTURE_2D, GL_VERTEX_ARRAY, GL_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY
-		// Needed states: GL_VERTEX_ARRAY
-		// Unneeded states: GL_COLOR_ARRAY, GL_TEXTURE_2D, GL_TEXTURE_COORD_ARRAY
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
-	glDisable(GL_TEXTURE_2D);
-	
-	glVertexPointer(2, GL_FLOAT, 0, squareVertices_);
-	glColor4f(color_.r/255.0f, color_.g/255.0f, color_.b/255.0f, opacity_/255.0f);
-	
-	BOOL newBlend = NO;
-	if( blendFunc_.src != CC_BLEND_SRC || blendFunc_.dst != CC_BLEND_DST ) {
-		newBlend = YES;
-		glBlendFunc(blendFunc_.src, blendFunc_.dst);
-	}else if( opacity_ == 255 ) {
-		newBlend = YES;
-		glBlendFunc(GL_ONE, GL_ZERO);
-	}else{
-		newBlend = YES;
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	}
-	
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-	
-	if( newBlend )
-		glBlendFunc(CC_BLEND_SRC, CC_BLEND_DST);
-	
-		// restore default GL state
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glEnable(GL_TEXTURE_2D);
+    ccDrawSolidPoly(squareVertices_, 4, ccc4f(color_.r/255.0f, color_.g/255.0f, color_.b/255.0f, opacity_/255.0f));
 }
 
 #pragma mark Protocols
@@ -151,7 +112,7 @@
 
 - (NSString*) description
 {
-	return [NSString stringWithFormat:@"<%@ = %08X | Tag = %i | Color = %02X%02X%02X%02X | Size = %f,%f>", [self class], self, tag_, color_.r, color_.g, color_.b, opacity_, size_.width, size_.height];
+	return [NSString stringWithFormat:@"<%@ = %8@ | Tag = %i | Color = %02X%02X%02X%02X | Size = %f,%f>", [self class], self, tag_, color_.r, color_.g, color_.b, opacity_, size_.width, size_.height];
 }
 
 @end

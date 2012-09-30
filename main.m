@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 int main(int argc, char *argv[]) {
-	NSAutoreleasePool *pool = [NSAutoreleasePool new];
-	int retVal = UIApplicationMain(argc, argv, nil, @"SneakyInput_0_4_0AppDelegate");
-	[pool release];
-	return retVal;
+	@autoreleasepool {
+		int retVal = UIApplicationMain(argc, argv, nil, @"SneakyInput_0_4_0AppDelegate");
+		return retVal;
+	}
 }
