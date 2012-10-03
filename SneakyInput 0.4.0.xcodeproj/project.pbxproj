@@ -29,6 +29,7 @@
 		DCCBF1BB0F6022AE0040855A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1BA0F6022AE0040855A /* OpenGLES.framework */; };
 		DCCBF1BD0F6022AE0040855A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1BC0F6022AE0040855A /* QuartzCore.framework */; };
 		DCCBF1BF0F6022AE0040855A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1BE0F6022AE0040855A /* UIKit.framework */; };
+		E63415E11618411600BF8BA0 /* CCNavigationViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E63415DF1618411600BF8BA0 /* CCNavigationViewController.mm */; };
 		E66F11AA15FE5FB300FB8F3F /* ColoredSquareSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = E66F11A815FE5FB300FB8F3F /* ColoredSquareSprite.m */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,8 @@
 		DCCBF1BA0F6022AE0040855A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		DCCBF1BC0F6022AE0040855A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DCCBF1BE0F6022AE0040855A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E63415DF1618411600BF8BA0 /* CCNavigationViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCNavigationViewController.mm; sourceTree = "<group>"; };
+		E63415E01618411600BF8BA0 /* CCNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNavigationViewController.h; sourceTree = "<group>"; };
 		E66F11A815FE5FB300FB8F3F /* ColoredSquareSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredSquareSprite.m; sourceTree = "<group>"; };
 		E66F11A915FE5FB300FB8F3F /* ColoredSquareSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredSquareSprite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,6 +151,8 @@
 				3395BB7412A9EEC200243B7A /* SneakyDPad */,
 				506EDC2F102F528A00A389B3 /* HelloWorldScene.h */,
 				506EDC30102F528A00A389B3 /* HelloWorldScene.m */,
+				E63415DF1618411600BF8BA0 /* CCNavigationViewController.mm */,
+				E63415E01618411600BF8BA0 /* CCNavigationViewController.h */,
 				1F3B9A2B0EF2145700286867 /* SneakyInput_0_4_0AppDelegate.m */,
 				1F3B9A2C0EF2145700286867 /* SneakyInput_0_4_0AppDelegate.h */,
 			);
@@ -290,6 +295,7 @@
 				3395BB8C12A9EEC200243B7A /* SneakyJoystickSkinnedDPadExample.m in Sources */,
 				3395BB8D12A9EEC200243B7A /* SneakyJoystickSkinnedJoystickExample.m in Sources */,
 				E66F11AA15FE5FB300FB8F3F /* ColoredSquareSprite.m in Sources */,
+				E63415E11618411600BF8BA0 /* CCNavigationViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
