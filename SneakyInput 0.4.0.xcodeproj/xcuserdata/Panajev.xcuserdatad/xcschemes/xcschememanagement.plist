@@ -9,6 +9,16 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>SneakyInput.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>SneakyInput_script.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>cocos2d libraries.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -23,6 +33,16 @@
 			<true/>
 		</dict>
 		<key>506EE05D10304ED200A389B3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E63278BA161C7E09002B2DCD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E63278CB161C7E14002B2DCD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
