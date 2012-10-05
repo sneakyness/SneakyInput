@@ -8,6 +8,7 @@
 
 #import "cocos2d.h"
 
+#ifdef __CC_PLATFORM_IOS
 @interface SneakyButton : CCNode <CCTargetedTouchDelegate> {
 	CGPoint center;
 	
@@ -22,6 +23,22 @@
 	BOOL isToggleable;
 	float rateLimit;
 }
+#else
+@interface SneakyButton : CCNode <CCMouseEventDelegate> {
+	CGPoint center;
+	
+	float radius;
+	float radiusSq;
+	
+	CGRect bounds;
+	BOOL active;
+	BOOL status;
+	BOOL value;
+	BOOL isHoldable;
+	BOOL isToggleable;
+	float rateLimit;
+}
+#endif
 
 @property (nonatomic, assign) BOOL status;
 @property (nonatomic, readonly) BOOL value;

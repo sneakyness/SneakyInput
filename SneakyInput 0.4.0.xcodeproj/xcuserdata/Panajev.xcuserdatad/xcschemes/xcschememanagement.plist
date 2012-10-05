@@ -14,15 +14,20 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>SneakyInputMac.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>SneakyInputMac_script.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>SneakyInput_script.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
-		</dict>
-		<key>cocos2d libraries.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -43,6 +48,16 @@
 			<true/>
 		</dict>
 		<key>E63278CB161C7E14002B2DCD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E69297DD161F314600DB1EAA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E69297F2161F315400DB1EAA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
