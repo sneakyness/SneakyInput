@@ -29,18 +29,12 @@
 		DCCBF1BB0F6022AE0040855A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1BA0F6022AE0040855A /* OpenGLES.framework */; };
 		DCCBF1BD0F6022AE0040855A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1BC0F6022AE0040855A /* QuartzCore.framework */; };
 		DCCBF1BF0F6022AE0040855A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1BE0F6022AE0040855A /* UIKit.framework */; };
-		E63278BC161C7E09002B2DCD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1B80F6022AE0040855A /* Foundation.framework */; };
 		E63278D9161C7E84002B2DCD /* SneakyJoystick.m in Sources */ = {isa = PBXBuildFile; fileRef = 3395BB7F12A9EEC200243B7A /* SneakyJoystick.m */; };
 		E63278DA161C7E84002B2DCD /* SneakyJoystickSkinnedBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3395BB8212A9EEC200243B7A /* SneakyJoystickSkinnedBase.m */; };
 		E63278DB161C7E84002B2DCD /* ColoredSquareSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = E66F11A815FE5FB300FB8F3F /* ColoredSquareSprite.m */; };
 		E63278DC161C7E84002B2DCD /* ColoredCircleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3395BB7C12A9EEC200243B7A /* ColoredCircleSprite.m */; };
 		E63278DD161C7E84002B2DCD /* SneakyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3395BB7712A9EEC200243B7A /* SneakyButton.m */; };
 		E63278DE161C7E84002B2DCD /* SneakyButtonSkinnedBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3395BB7A12A9EEC200243B7A /* SneakyButtonSkinnedBase.m */; };
-		E63278DF161C7EE4002B2DCD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1B60F6022AE0040855A /* CoreGraphics.framework */; };
-		E63278E0161C7EE4002B2DCD /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1BA0F6022AE0040855A /* OpenGLES.framework */; };
-		E63278E1161C7EE4002B2DCD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1BC0F6022AE0040855A /* QuartzCore.framework */; };
-		E63278E2161C7EE4002B2DCD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1BE0F6022AE0040855A /* UIKit.framework */; };
-		E63278E4161C7EE4002B2DCD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63278E3161C7EE4002B2DCD /* CoreFoundation.framework */; };
 		E63278E6161C7F09002B2DCD /* SneakyJoystick.h in Headers */ = {isa = PBXBuildFile; fileRef = 3395BB7E12A9EEC200243B7A /* SneakyJoystick.h */; };
 		E63278E7161C7F09002B2DCD /* SneakyJoystickSkinnedBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3395BB8112A9EEC200243B7A /* SneakyJoystickSkinnedBase.h */; };
 		E63278E8161C7F09002B2DCD /* ColoredCircleSprite.h in Headers */ = {isa = PBXBuildFile; fileRef = 3395BB7B12A9EEC200243B7A /* ColoredCircleSprite.h */; };
@@ -49,12 +43,6 @@
 		E63278EB161C7F09002B2DCD /* SneakyButtonSkinnedBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3395BB7912A9EEC200243B7A /* SneakyButtonSkinnedBase.h */; };
 		E63415E11618411600BF8BA0 /* CCNavigationViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E63415DF1618411600BF8BA0 /* CCNavigationViewController.mm */; };
 		E66F11AA15FE5FB300FB8F3F /* ColoredSquareSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = E66F11A815FE5FB300FB8F3F /* ColoredSquareSprite.m */; };
-		E6929807161F32F100DB1EAA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6929803161F32F100DB1EAA /* Cocoa.framework */; };
-		E6929808161F32F100DB1EAA /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6929804161F32F100DB1EAA /* CoreFoundation.framework */; };
-		E6929809161F32F100DB1EAA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6929805161F32F100DB1EAA /* CoreGraphics.framework */; };
-		E692980A161F32F100DB1EAA /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6929806161F32F100DB1EAA /* OpenGL.framework */; };
-		E692980D161F330B00DB1EAA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E692980B161F330B00DB1EAA /* Foundation.framework */; };
-		E692980E161F330B00DB1EAA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E692980C161F330B00DB1EAA /* QuartzCore.framework */; };
 		E692980F161F336800DB1EAA /* SneakyJoystick.h in Headers */ = {isa = PBXBuildFile; fileRef = 3395BB7E12A9EEC200243B7A /* SneakyJoystick.h */; };
 		E6929810161F336800DB1EAA /* SneakyJoystickSkinnedBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3395BB8112A9EEC200243B7A /* SneakyJoystickSkinnedBase.h */; };
 		E6929811161F336800DB1EAA /* ColoredCircleSprite.h in Headers */ = {isa = PBXBuildFile; fileRef = 3395BB7B12A9EEC200243B7A /* ColoredCircleSprite.h */; };
@@ -141,32 +129,6 @@
 				DC6640050F83B3EA000B3E49 /* OpenAL.framework in Frameworks */,
 				506EDB88102F4C4000A389B3 /* libz.dylib in Frameworks */,
 				506EDBA5102F4C9F00A389B3 /* AVFoundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E63278B8161C7E09002B2DCD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E63278E4161C7EE4002B2DCD /* CoreFoundation.framework in Frameworks */,
-				E63278DF161C7EE4002B2DCD /* CoreGraphics.framework in Frameworks */,
-				E63278BC161C7E09002B2DCD /* Foundation.framework in Frameworks */,
-				E63278E0161C7EE4002B2DCD /* OpenGLES.framework in Frameworks */,
-				E63278E1161C7EE4002B2DCD /* QuartzCore.framework in Frameworks */,
-				E63278E2161C7EE4002B2DCD /* UIKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E69297DB161F314600DB1EAA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E692980D161F330B00DB1EAA /* Foundation.framework in Frameworks */,
-				E692980E161F330B00DB1EAA /* QuartzCore.framework in Frameworks */,
-				E6929807161F32F100DB1EAA /* Cocoa.framework in Frameworks */,
-				E6929808161F32F100DB1EAA /* CoreFoundation.framework in Frameworks */,
-				E6929809161F32F100DB1EAA /* CoreGraphics.framework in Frameworks */,
-				E692980A161F32F100DB1EAA /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,7 +356,6 @@
 			buildPhases = (
 				E63278E5161C7EF1002B2DCD /* Headers */,
 				E63278B7161C7E09002B2DCD /* Sources */,
-				E63278B8161C7E09002B2DCD /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -426,7 +387,6 @@
 			buildPhases = (
 				E69297DC161F314600DB1EAA /* Headers */,
 				E69297DA161F314600DB1EAA /* Sources */,
-				E69297DB161F314600DB1EAA /* Frameworks */,
 			);
 			buildRules = (
 			);
