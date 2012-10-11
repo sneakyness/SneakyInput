@@ -12,14 +12,32 @@
 
 @synthesize status, value, active, isHoldable, isToggleable, rateLimit, radius;
 
-- (void) onEnterTransitionDidFinish
+-(void) onEnterTransitionDidFinish
 {
-    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1 swallowsTouches:YES];
+#ifdef __CC_PLATFORM_IOS
+    CCLOG(@"iOS SneakyInput");
+    CCDirector *director =  (CCDirector*)[CCDirector sharedDirector];
+    [[director touchDispatcher] removeDelegate:self];
+	[[director touchDispatcher] addTargetedDelegate:self priority:1  swallowsTouches:YES];
+#elif defined (__CC_PLATFORM_MAC)
+    CCLOG(@"Mac SneakyInput");
+    [[[CCDirector sharedDirector] eventDispatcher] removeMouseDelegate:self];
+    [[[CCDirector sharedDirector] eventDispatcher] addMouseDelegate:self priority:1];
+#endif
+    
+    //CMLog(@"...%s...", __PRETTY_FUNCTION__);
+	[super onEnterTransitionDidFinish];
 }
 
-- (void) onExit
+- (void)onExit
 {
-    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+#ifdef __CC_PLATFORM_IOS
+    CCDirector *director =  (CCDirector*)[CCDirector sharedDirector];
+	[[director touchDispatcher] removeDelegate:self];
+#elif defined (__CC_PLATFORM_MAC)
+    [[[CCDirector sharedDirector] eventDispatcher] removeMouseDelegate:self];
+#endif
+	[super onExit];
 }
 
 -(id)initWithRect:(CGRect)rect{
@@ -54,14 +72,14 @@
 }
 
 #pragma mark Touch Delegate
-
+#ifdef __CC_PLATFORM_IOS
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
 	if (active) return NO;
 	
 	CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView:[touch view]]];
 	location = [self convertToNodeSpace:location];
-		//Do a fast rect check before doing a circle hit check:
+    //Do a fast rect check before doing a circle hit check:
 	if(location.x < -radius || location.x > radius || location.y < -radius || location.y > radius){
 		return NO;
 	}else{
@@ -77,7 +95,7 @@
 			return YES;
 		}
 	}
-return NO;
+    return NO;
 }
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
@@ -86,7 +104,7 @@ return NO;
 	
 	CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView:[touch view]]];
 	location = [self convertToNodeSpace:location];
-		//Do a fast rect check before doing a circle hit check:
+    //Do a fast rect check before doing a circle hit check:
 	if(location.x < -radius || location.x > radius || location.y < -radius || location.y > radius){
 		return;
 	}else{
@@ -111,5 +129,69 @@ return NO;
 {
 	[self ccTouchEnded:touch withEvent:event];
 }
+#elif defined (__CC_PLATFORM_MAC)
+-(BOOL) ccMouseDown:(NSEvent*)event {
+    
+    if(active) {
+        return NO;
+    }
+    
+    CGPoint location = [(CCDirectorMac*)[CCDirector sharedDirector] convertEventToGL:event];
+    location = [self convertToNodeSpace:location];
+    
+    //Do a fast rect check before doing a circle hit check:
+	if(location.x < -radius || location.x > radius || location.y < -radius || location.y > radius){
+		return NO;
+	}else{
+		float dSq = location.x*location.x + location.y*location.y;
+		if(radiusSq > dSq){
+			active = YES;
+			if (!isHoldable && !isToggleable){
+				value = 1;
+				[self schedule: @selector(limiter:) interval:rateLimit];
+			}
+			if (isHoldable) value = 1;
+			if (isToggleable) value = !value;
+            CCLOG(@"Mouse down event... click ok...");
+		}
+	}
+    return YES;
+}
+
+-(BOOL) ccMouseDragged:(NSEvent *)event {
+    //CCLOG(@"Mouse dragged event...");
+    
+    if (!active) return NO;
+    CGPoint location = [(CCDirectorMac*)[CCDirector sharedDirector] convertEventToGL:event];
+    location = [self convertToNodeSpace:location];
+    
+    //Do a fast rect check before doing a circle hit check:
+	if(location.x < -radius || location.x > radius || location.y < -radius || location.y > radius){
+		return NO;
+	}else{
+		float dSq = location.x*location.x + location.y*location.y;
+		if(radiusSq > dSq){
+			if (isHoldable) value = 1;
+		}
+		else {
+			if (isHoldable) value = 0; active = NO;
+		}
+	}
+    
+    return YES;
+}
+
+-(BOOL) ccMouseUp:(NSEvent*)event {
+    //NSAssert(state == kBoxStateGrabbed, @"Paddle - Unexpected state!");
+    //CCLOG(@"Mouse up...");
+    
+	if (!active) return NO;
+	if (isHoldable) value = 0;
+	if (isHoldable||isToggleable) active = NO;
+    
+    return NO;
+}
+#endif
+
 
 @end

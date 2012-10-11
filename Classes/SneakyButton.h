@@ -8,7 +8,12 @@
 
 #import "cocos2d.h"
 
+#ifdef __CC_PLATFORM_IOS
 @interface SneakyButton : CCNode <CCTargetedTouchDelegate> {
+#elif defined (__CC_PLATFORM_MAC)
+@interface SneakyButton : CCNode <CCMouseEventDelegate> {
+#endif
+
 	CGPoint center;
 	
 	float radius;

@@ -73,13 +73,8 @@
 	
 	for(int i=0; i<numberOfSegments; i++)
 	{
-#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 		float j = radius_ * cosf(theta) + position_.x;
-		float k = radius_ * sinf(theta) + position_.y;
-#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
-		float j = radius_ * cosf(theta) + position_.x;
-		float k = radius_ * sinf(theta) + position_.y;
-#endif				
+		float k = radius_ * sinf(theta) + position_.y;			
 		
 		circleVertices_[i] = ccp(j,k);
 		
@@ -129,7 +124,11 @@
 
 - (NSString*) description
 {
+#ifdef __CC_PLATFORM_IOS
 	return [NSString stringWithFormat:@"<%@ = %8@ | Tag = %i | Color = %02X%02X%02X%02X | Radius = %1.2f>", [self class], self, tag_, color_.r, color_.g, color_.b, opacity_, radius_];
+#else
+    return [NSString stringWithFormat:@"<%@ = %8@ | Tag = %li | Color = %02X%02X%02X%02X | Radius = %1.2f>", [self class], self, tag_, color_.r, color_.g, color_.b, opacity_, radius_];
+#endif
 }
 
 @end

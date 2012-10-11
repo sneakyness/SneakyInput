@@ -112,7 +112,11 @@
 
 - (NSString*) description
 {
+#ifdef __CC_PLATFORM_IOS
 	return [NSString stringWithFormat:@"<%@ = %8@ | Tag = %i | Color = %02X%02X%02X%02X | Size = %f,%f>", [self class], self, tag_, color_.r, color_.g, color_.b, opacity_, size_.width, size_.height];
+#else
+    return [NSString stringWithFormat:@"<%@ = %8@ | Tag = %li | Color = %02X%02X%02X%02X | Size = %f,%f>", [self class], self, tag_, color_.r, color_.g, color_.b, opacity_, size_.width, size_.height];
+#endif
 }
 
 @end

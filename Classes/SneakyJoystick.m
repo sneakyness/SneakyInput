@@ -56,24 +56,40 @@ deadRadius;
 		
 		//Cocos node stuff
 		position_ = rect.origin;
+        
+#ifdef __CC_PLATFORM_MAC
+        active = NO;
+#endif
 }
 	return self;
 }
 
-- (void) onEnterTransitionDidFinish
+-(void) onEnterTransitionDidFinish
 {
-#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1 swallowsTouches:YES];
-#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+#ifdef __CC_PLATFORM_IOS
+    CCLOG(@"iOS SneakyInput");
+    CCDirector *director =  (CCDirector*)[CCDirector sharedDirector];
+    [[director touchDispatcher] removeDelegate:self];
+	[[director touchDispatcher] addTargetedDelegate:self priority:1  swallowsTouches:YES];
+#elif defined (__CC_PLATFORM_MAC)
+    CCLOG(@"Mac SneakyInput");
+    [[[CCDirector sharedDirector] eventDispatcher] removeMouseDelegate:self];
+    [[[CCDirector sharedDirector] eventDispatcher] addMouseDelegate:self priority:1];
 #endif
+    
+    //CMLog(@"...%s...", __PRETTY_FUNCTION__);
+	[super onEnterTransitionDidFinish];
 }
 
-- (void) onExit
+- (void)onExit
 {
-#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
-#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+#ifdef __CC_PLATFORM_IOS
+    CCDirector *director =  (CCDirector*)[CCDirector sharedDirector];
+	[[director touchDispatcher] removeDelegate:self];
+#elif defined (__CC_PLATFORM_MAC)
+    [[[CCDirector sharedDirector] eventDispatcher] removeMouseDelegate:self];
 #endif
+	[super onExit];
 }
 
 -(void)updateVelocity:(CGPoint)point
@@ -187,7 +203,54 @@ deadRadius;
 {
 	[self ccTouchEnded:touch withEvent:event];
 }
-#elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
+#elif defined (__CC_PLATFORM_MAC)
+-(BOOL) ccMouseDown:(NSEvent*)event {
+    //CCLOG(@"Mouse down event...");
+
+    CGPoint location = [(CCDirectorMac*)[CCDirector sharedDirector] convertEventToGL:event];
+    location = [self convertToNodeSpace:location];
+    
+	//Do a fast rect check before doing a circle hit check:
+	if(location.x < -joystickRadius || location.x > joystickRadius || location.y < -joystickRadius || location.y > joystickRadius){
+		return NO;
+	}else{
+		float dSq = location.x*location.x + location.y*location.y;
+		if(joystickRadiusSq > dSq){
+			[self updateVelocity:location];
+            //CCLOG(@"Mouse down event... click ok...");
+            active = YES;
+			return YES;
+		}
+	}
+	return NO;
+}
+
+-(BOOL) ccMouseDragged:(NSEvent *)event {
+    //CCLOG(@"Mouse dragged event...");
+    if(!active) {
+        return NO;
+    }
+    
+    CGPoint location = [(CCDirectorMac*)[CCDirector sharedDirector] convertEventToGL:event];
+    location = [self convertToNodeSpace:location];
+	[self updateVelocity:location];
+    
+    return YES;
+}
+
+-(BOOL) ccMouseUp:(NSEvent*)event {
+    //CCLOG(@"mouse up, joystick...");
+	CGPoint location = CGPointZero;
+	if(!autoCenter){
+        CGPoint location = [(CCDirectorMac*)[CCDirector sharedDirector] convertEventToGL:event];
+        location = [self convertToNodeSpace:location];
+	}
+	[self updateVelocity:location];
+    active = NO;
+    
+    return NO;
+}
+
 #endif
 
 @end
