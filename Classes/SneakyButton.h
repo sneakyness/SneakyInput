@@ -10,21 +10,10 @@
 
 #ifdef __CC_PLATFORM_IOS
 @interface SneakyButton : CCNode <CCTargetedTouchDelegate> {
-	CGPoint center;
-	
-	float radius;
-	float radiusSq;
-	
-	CGRect bounds;
-	BOOL active;
-	BOOL status;
-	BOOL value;
-	BOOL isHoldable;
-	BOOL isToggleable;
-	float rateLimit;
-}
-#else
+#elif defined (__CC_PLATFORM_MAC)
 @interface SneakyButton : CCNode <CCMouseEventDelegate> {
+#endif
+
 	CGPoint center;
 	
 	float radius;
@@ -38,7 +27,6 @@
 	BOOL isToggleable;
 	float rateLimit;
 }
-#endif
 
 @property (nonatomic, assign) BOOL status;
 @property (nonatomic, readonly) BOOL value;
