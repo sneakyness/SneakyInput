@@ -21,7 +21,7 @@
 		self.backgroundSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 0, 0, 128) radius:100];
 		self.thumbSprite = [ColoredCircleSprite circleWithColor:ccc4(0, 0, 255, 200) radius:30];
 		
-		self.joystick = [[SneakyJoystick alloc] initWithRect:CGRectMake(0.0f, 0.0f, contentSize_.width, contentSize_.height)];
+		self.joystick = [[SneakyJoystick alloc] initWithRect:CGRectMake(0.0f, 0.0f, self.contentSize.width, self.contentSize.height)];
 	}
 	return self;
 }

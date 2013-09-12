@@ -13,13 +13,6 @@
 
 @property (nonatomic,readwrite) float radius;
 
-/** Opacity: conforms to CCRGBAProtocol protocol */
-@property (nonatomic,readonly) GLubyte opacity;
-/** Opacity: conforms to CCRGBAProtocol protocol */
-@property (nonatomic,readonly) ccColor3B color;
-/** BlendFunction. Conforms to CCBlendProtocol protocol */
-@property (nonatomic,readwrite) ccBlendFunc blendFunc;
-
 /** creates a Circle with color and radius */
 + (id) circleWithColor: (ccColor4B)color radius:(GLfloat)r;
 

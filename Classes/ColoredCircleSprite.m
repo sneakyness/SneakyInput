@@ -3,16 +3,14 @@
 
 @interface ColoredCircleSprite (privateMethods)
 - (void) updateContentSize;
-- (void) updateColor;
 @end
 
 
 @implementation ColoredCircleSprite
 
 @synthesize radius=radius_;
-	// Opacity and RGB color protocol
-@synthesize opacity=opacity_, color=color_;
-@synthesize blendFunc=blendFunc_;
+@dynamic cascadeColorEnabled;
+@dynamic cascadeOpacityEnabled;
 
 + (id) circleWithColor: (ccColor4B)color radius:(GLfloat)r
 {
@@ -74,8 +72,8 @@
 	for(int i=0; i<numberOfSegments; i++)
 	{
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-		float j = radius_ * cosf(theta) + position_.x;
-		float k = radius_ * sinf(theta) + position_.y;
+		float j = radius_ * cosf(theta) + self.position.x;
+		float k = radius_ * sinf(theta) + self.position.y;
 #elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
 		float j = radius_ * cosf(theta) + position_.x;
 		float k = radius_ * sinf(theta) + position_.y;
@@ -92,6 +90,7 @@
 -(void) setContentSize: (CGSize) size
 {
 	self.radius	= size.width/2;
+	[self updateContentSize];
 }
 
 - (void) updateContentSize
@@ -104,18 +103,68 @@
 	ccDrawSolidPoly(circleVertices_, numberOfSegments, ccc4f(color_.r/255.0f, color_.g/255.0f, color_.b/255.0f, opacity_/255.0f));
 }
 
-#pragma mark Protocols
-	// Color Protocol
+#pragma mark CCRGBAProtocol
+
+-(ccColor3B) color
+{
+	return color_;
+}
 
 -(void) setColor:(ccColor3B)color
 {
 	color_ = color;
 }
 
--(void) setOpacity: (GLubyte) o
+-(ccColor3B) displayedColor
 {
-	opacity_ = o;
-	[self updateColor];
+	return color_;
+}
+
+-(BOOL) isCascadeColorEnabled
+{
+	return YES;
+}
+
+-(void) updateDisplayedColor:(ccColor3B)color
+{
+	[self setColor:color];
+}
+
+-(GLubyte) opacity
+{
+	return opacity_;
+}
+
+-(void) setOpacity:(GLubyte)opacity
+{
+	opacity_ = opacity;
+}
+
+-(GLubyte) displayedOpacity
+{
+	return opacity_;
+}
+
+-(BOOL) isCascadeOpacityEnabled
+{
+	return YES;
+}
+
+-(void) updateDisplayedOpacity:(GLubyte)opacity
+{
+	[self setOpacity:opacity];
+}
+
+#pragma mark CCBlendProtocol
+
+-(ccBlendFunc) blendFunc
+{
+	return blendFunc_;
+}
+
+-(void) setBlendFunc:(ccBlendFunc)blendFunc
+{
+	blendFunc_ = blendFunc;
 }
 
 #pragma mark Touch
@@ -129,7 +178,7 @@
 
 - (NSString*) description
 {
-	return [NSString stringWithFormat:@"<%@ = %8@ | Tag = %i | Color = %02X%02X%02X%02X | Radius = %1.2f>", [self class], self, tag_, color_.r, color_.g, color_.b, opacity_, radius_];
+	return [NSString stringWithFormat:@"<%@ = %8@ | Tag = %i | Color = %02X%02X%02X%02X | Radius = %1.2f>", [self class], self, self.tag, color_.r, color_.g, color_.b, opacity_, radius_];
 }
 
 @end
