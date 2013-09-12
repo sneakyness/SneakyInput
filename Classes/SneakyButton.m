@@ -36,7 +36,7 @@
 		radius = 32.0f;
 		rateLimit = 1.0f/120.0f;
 		
-		position_ = rect.origin;
+		self.position = rect.origin;
 	}
 	return self;
 }
