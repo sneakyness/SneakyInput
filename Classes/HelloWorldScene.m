@@ -39,7 +39,7 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init] )) {
-		self.isTouchEnabled = YES;
+		self.touchEnabled = YES;
 		
 		SneakyJoystickSkinnedBase *leftJoy = [[SneakyJoystickSkinnedBase alloc] init];
 		leftJoy.position = ccp(64,64);

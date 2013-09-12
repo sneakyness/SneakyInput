@@ -3,16 +3,14 @@
 
 @interface ColoredSquareSprite (privateMethods)
 - (void) updateContentSize;
-- (void) updateColor;
 @end
 
 
 @implementation ColoredSquareSprite
 
 @synthesize size=size_;
-	// Opacity and RGB color protocol
-@synthesize opacity=opacity_, color=color_;
-@synthesize blendFunc=blendFunc_;
+@dynamic cascadeColorEnabled;
+@dynamic cascadeOpacityEnabled;
 
 + (id) squareWithColor: (ccColor4B)color size:(CGSize)sz
 {
@@ -66,10 +64,10 @@
 {
 	size_ = sz;
 	
-    squareVertices_[0] = ccp(position_.x - size_.width,position_.y - size_.height);
-    squareVertices_[1] = ccp(position_.x + size_.width,position_.y - size_.height);
-    squareVertices_[2] = ccp(position_.x - size_.width,position_.y + size_.height);
-    squareVertices_[3] = ccp(position_.x + size_.width,position_.y + size_.height);
+	squareVertices_[0] = ccp(self.position.x - size_.width,self.position.y - size_.height);
+	squareVertices_[1] = ccp(self.position.x + size_.width,self.position.y - size_.height);
+	squareVertices_[2] = ccp(self.position.x - size_.width,self.position.y + size_.height);
+	squareVertices_[3] = ccp(self.position.x + size_.width,self.position.y + size_.height);
 	
 	[self updateContentSize];
 }
@@ -86,21 +84,71 @@
 
 - (void)draw
 {		
-    ccDrawSolidPoly(squareVertices_, 4, ccc4f(color_.r/255.0f, color_.g/255.0f, color_.b/255.0f, opacity_/255.0f));
+	ccDrawSolidPoly(squareVertices_, 4, ccc4f(color_.r/255.0f, color_.g/255.0f, color_.b/255.0f, opacity_/255.0f));
 }
 
-#pragma mark Protocols
-	// Color Protocol
+#pragma mark CCRGBAProtocol
+
+-(ccColor3B) color
+{
+	return color_;
+}
 
 -(void) setColor:(ccColor3B)color
 {
 	color_ = color;
 }
 
--(void) setOpacity: (GLubyte) o
+-(ccColor3B) displayedColor
 {
-	opacity_ = o;
-	[self updateColor];
+	return color_;
+}
+
+-(BOOL) isCascadeColorEnabled
+{
+	return YES;
+}
+
+-(void) updateDisplayedColor:(ccColor3B)color
+{
+	[self setColor:color];
+}
+
+-(GLubyte) opacity
+{
+	return opacity_;
+}
+
+-(void) setOpacity:(GLubyte)opacity
+{
+	opacity_ = opacity;
+}
+
+-(GLubyte) displayedOpacity
+{
+	return opacity_;
+}
+
+-(BOOL) isCascadeOpacityEnabled
+{
+	return YES;
+}
+
+-(void) updateDisplayedOpacity:(GLubyte)opacity
+{
+	[self setOpacity:opacity];
+}
+
+#pragma mark CCBlendProtocol
+
+-(ccBlendFunc) blendFunc
+{
+	return blendFunc_;
+}
+
+-(void) setBlendFunc:(ccBlendFunc)blendFunc
+{
+	blendFunc_ = blendFunc;
 }
 
 #pragma mark Touch
@@ -112,7 +160,7 @@
 
 - (NSString*) description
 {
-	return [NSString stringWithFormat:@"<%@ = %8@ | Tag = %i | Color = %02X%02X%02X%02X | Size = %f,%f>", [self class], self, tag_, color_.r, color_.g, color_.b, opacity_, size_.width, size_.height];
+	return [NSString stringWithFormat:@"<%@ = %8@ | Tag = %i | Color = %02X%02X%02X%02X | Size = %f,%f>", [self class], self, self.tag, color_.r, color_.g, color_.b, opacity_, size_.width, size_.height];
 }
 
 @end
