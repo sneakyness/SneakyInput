@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		025967471885B8A80060415D /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 025967421885B8460060415D /* libcocos2d.a */; };
+		025967491885D1B20060415D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 025967481885D1B20060415D /* CoreText.framework */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1F3B9A2D0EF2145700286867 /* SneakyInput_0_4_0AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B9A2B0EF2145700286867 /* SneakyInput_0_4_0AppDelegate.m */; };
 		3395BB8712A9EEC200243B7A /* SneakyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3395BB7712A9EEC200243B7A /* SneakyButton.m */; };
@@ -29,11 +31,36 @@
 		DCCBF1BB0F6022AE0040855A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1BA0F6022AE0040855A /* OpenGLES.framework */; };
 		DCCBF1BD0F6022AE0040855A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1BC0F6022AE0040855A /* QuartzCore.framework */; };
 		DCCBF1BF0F6022AE0040855A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1BE0F6022AE0040855A /* UIKit.framework */; };
-		E63415E11618411600BF8BA0 /* CCNavigationViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E63415DF1618411600BF8BA0 /* CCNavigationViewController.mm */; };
 		E66F11AA15FE5FB300FB8F3F /* ColoredSquareSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = E66F11A815FE5FB300FB8F3F /* ColoredSquareSprite.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		025967411885B8460060415D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0259673A1885B8440060415D /* cocos2d-ios.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5018F24D0DFDEAC400C013A5;
+			remoteInfo = cocos2d;
+		};
+		025967431885B8460060415D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0259673A1885B8440060415D /* cocos2d-ios.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A04A1FEB13B826B300ABAFB7;
+			remoteInfo = kazmath;
+		};
+		025967451885B8650060415D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0259673A1885B8440060415D /* cocos2d-ios.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5018F24C0DFDEAC400C013A5;
+			remoteInfo = cocos2d;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		0259673A1885B8440060415D /* cocos2d-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "cocos2d-ios.xcodeproj"; path = "libs/cocos2d-iphone/cocos2d-ios.xcodeproj"; sourceTree = "<group>"; };
+		025967481885D1B20060415D /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* SneakyInput 0.4.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SneakyInput 0.4.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F3B9A2B0EF2145700286867 /* SneakyInput_0_4_0AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SneakyInput_0_4_0AppDelegate.m; path = Classes/SneakyInput_0_4_0AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		1F3B9A2C0EF2145700286867 /* SneakyInput_0_4_0AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SneakyInput_0_4_0AppDelegate.h; path = Classes/SneakyInput_0_4_0AppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -68,8 +95,6 @@
 		DCCBF1BA0F6022AE0040855A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		DCCBF1BC0F6022AE0040855A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DCCBF1BE0F6022AE0040855A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		E63415DF1618411600BF8BA0 /* CCNavigationViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCNavigationViewController.mm; sourceTree = "<group>"; };
-		E63415E01618411600BF8BA0 /* CCNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNavigationViewController.h; sourceTree = "<group>"; };
 		E66F11A815FE5FB300FB8F3F /* ColoredSquareSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredSquareSprite.m; sourceTree = "<group>"; };
 		E66F11A915FE5FB300FB8F3F /* ColoredSquareSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredSquareSprite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,6 +104,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				025967491885D1B20060415D /* CoreText.framework in Frameworks */,
+				025967471885B8A80060415D /* libcocos2d.a in Frameworks */,
 				DCCBF1B70F6022AE0040855A /* CoreGraphics.framework in Frameworks */,
 				DCCBF1B90F6022AE0040855A /* Foundation.framework in Frameworks */,
 				DCCBF1BB0F6022AE0040855A /* OpenGLES.framework in Frameworks */,
@@ -94,6 +121,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		025967391885B8080060415D /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				0259673A1885B8440060415D /* cocos2d-ios.xcodeproj */,
+			);
+			name = libs;
+			sourceTree = "<group>";
+		};
+		0259673B1885B8440060415D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				025967421885B8460060415D /* libcocos2d.a */,
+				025967441885B8460060415D /* libkazmath.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +149,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				025967391885B8080060415D /* libs */,
 				2D500B1D0D5A766B00DBA0E3 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				50F414EB1069373D002A0D5E /* Resources */,
@@ -126,6 +171,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				025967481885D1B20060415D /* CoreText.framework */,
 				DCCBF1B60F6022AE0040855A /* CoreGraphics.framework */,
 				DCCBF1B80F6022AE0040855A /* Foundation.framework */,
 				DCCBF1BA0F6022AE0040855A /* OpenGLES.framework */,
@@ -144,15 +190,13 @@
 			children = (
 				3395BB7D12A9EEC200243B7A /* SneakyJoystick */,
 				3395BB7B12A9EEC200243B7A /* ColoredCircleSprite.h */,
+				3395BB7C12A9EEC200243B7A /* ColoredCircleSprite.m */,
 				E66F11A815FE5FB300FB8F3F /* ColoredSquareSprite.m */,
 				E66F11A915FE5FB300FB8F3F /* ColoredSquareSprite.h */,
-				3395BB7C12A9EEC200243B7A /* ColoredCircleSprite.m */,
 				3395BB7512A9EEC200243B7A /* SneakyButton */,
 				3395BB7412A9EEC200243B7A /* SneakyDPad */,
 				506EDC2F102F528A00A389B3 /* HelloWorldScene.h */,
 				506EDC30102F528A00A389B3 /* HelloWorldScene.m */,
-				E63415DF1618411600BF8BA0 /* CCNavigationViewController.mm */,
-				E63415E01618411600BF8BA0 /* CCNavigationViewController.h */,
 				1F3B9A2B0EF2145700286867 /* SneakyInput_0_4_0AppDelegate.m */,
 				1F3B9A2C0EF2145700286867 /* SneakyInput_0_4_0AppDelegate.h */,
 			);
@@ -233,6 +277,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				025967461885B8650060415D /* PBXTargetDependency */,
 			);
 			name = "SneakyInput 0.4.0";
 			productName = "SneakyInput 0.4.0";
@@ -259,12 +304,35 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 0259673B1885B8440060415D /* Products */;
+					ProjectRef = 0259673A1885B8440060415D /* cocos2d-ios.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* SneakyInput 0.4.0 */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		025967421885B8460060415D /* libcocos2d.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libcocos2d.a;
+			remoteRef = 025967411885B8460060415D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		025967441885B8460060415D /* libkazmath.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libkazmath.a;
+			remoteRef = 025967431885B8460060415D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
@@ -295,11 +363,18 @@
 				3395BB8C12A9EEC200243B7A /* SneakyJoystickSkinnedDPadExample.m in Sources */,
 				3395BB8D12A9EEC200243B7A /* SneakyJoystickSkinnedJoystickExample.m in Sources */,
 				E66F11AA15FE5FB300FB8F3F /* ColoredSquareSprite.m in Sources */,
-				E63415E11618411600BF8BA0 /* CCNavigationViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		025967461885B8650060415D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = cocos2d;
+			targetProxy = 025967451885B8650060415D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -313,16 +388,24 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SneakyInput_0_4_0_Prefix.pch;
-				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				HEADER_SEARCH_PATHS = "~/Programming/SharedLibs/Cocos/include/**";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					"\"libs/cocos2d-iphone/external/kazmath/include\"/**",
+					"\"libs/cocos2d-iphone/cocos2d\"/**",
+					"libs/cocos2d-iphone/external/Chipmunk/objectivec/include",
+					"libs/cocos2d-iphone/external/Chipmunk/include",
+					"\"libs/cocos2d-iphone/cocos2d-ui\"/**",
+				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = "~/Programming/SharedLibs/Cocos/lib/**";
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-lCocos";
+				OTHER_LDFLAGS = (
+					"-lz",
+					"-lsqlite3",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "SneakyInput 0.4.0";
 				SDKROOT = iphoneos;
-				WARNING_CFLAGS = "-Wall";
 			};
 			name = Debug;
 		};
@@ -335,16 +418,23 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SneakyInput_0_4_0_Prefix.pch;
-				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				HEADER_SEARCH_PATHS = "~/Programming/SharedLibs/Cocos/include/**";
+				HEADER_SEARCH_PATHS = (
+					"\"libs/cocos2d-iphone/external/kazmath/include\"/**",
+					"\"libs/cocos2d-iphone/cocos2d\"/**",
+					"libs/cocos2d-iphone/external/Chipmunk/objectivec/include",
+					"libs/cocos2d-iphone/external/Chipmunk/include",
+					"\"libs/cocos2d-iphone/cocos2d-ui\"/**",
+				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = "~/Programming/SharedLibs/Cocos/lib/**";
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-lCocos";
+				OTHER_LDFLAGS = (
+					"-lz",
+					"-lsqlite3",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "SneakyInput 0.4.0";
 				SDKROOT = iphoneos;
-				WARNING_CFLAGS = "-Wall";
 			};
 			name = Release;
 		};
@@ -352,16 +442,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
 					"COCOS2D_DEBUG=1",
-					"CD_DEBUG=1",
 				);
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
-				"GCC_THUMB_SUPPORT[arch=armv7]" = YES;
+				"GCC_THUMB_SUPPORT[arch=armv7]" = NO;
+				GCC_UNROLL_LOOPS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
@@ -374,12 +464,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					NDEBUG,
+					"NS_BLOCK_ASSERTIONS=1",
+				);
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
-				"GCC_THUMB_SUPPORT[arch=armv7]" = YES;
-				GCC_UNROLL_LOOPS = YES;
+				"GCC_THUMB_SUPPORT[arch=armv7]" = NO;
+				GCC_UNROLL_LOOPS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;

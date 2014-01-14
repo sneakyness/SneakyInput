@@ -1,9 +1,9 @@
 #import "cocos2d.h"
 
-@interface ColoredSquareSprite : CCNode <CCRGBAProtocol, CCBlendProtocol> {
+@interface ColoredSquareSprite : CCNode  {
 	CGSize		size_;
-	GLubyte		opacity_;
-	ccColor3B	color_;
+	float		opacity_;
+	CCColor     *color_;
 	
 	CGPoint		*squareVertices_;
 	

@@ -24,7 +24,7 @@
 		self.pressSprite = nil;
 		self.button = nil;
 		
-		[self schedule:@selector(watchSelf)];
+		[self schedule:@selector(watchSelf) interval:1.0f/60.0f];
 	}
 	return self;
 }
@@ -64,7 +64,8 @@
 - (void) setContentSize:(CGSize)s
 {
 	[super setContentSize:s];
-	defaultSprite.contentSize = s;
+	//defaultSprite.contentSize = s;
+    //defaultSprite.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
 	button.radius = s.width/2;
 }
 
@@ -77,8 +78,8 @@
 	defaultSprite = aSprite;
 	if(aSprite){
 		[self addChild:defaultSprite z:0];
-		
 		[self setContentSize:defaultSprite.contentSize];
+        defaultSprite.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
 	}
 }
 
@@ -91,6 +92,7 @@
 	activatedSprite = aSprite;
 	if(aSprite){
 		[self addChild:activatedSprite z:1];
+        activatedSprite.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
 		
 		[self setContentSize:activatedSprite.contentSize];
 	}
@@ -105,7 +107,8 @@
 	disabledSprite = aSprite;
 	if(aSprite){
 		[self addChild:disabledSprite z:2];
-		
+        disabledSprite.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
+
 		[self setContentSize:disabledSprite.contentSize];
 	}
 }
@@ -119,7 +122,8 @@
 	pressSprite = aSprite;
 	if(aSprite){
 		[self addChild:pressSprite z:3];
-		
+        pressSprite.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
+
 		[self setContentSize:pressSprite.contentSize];
 	}
 }
@@ -133,9 +137,26 @@
 	button = aButton;
 	if(aButton){
 		[self addChild:button z:4];
+        button.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
 		if(defaultSprite)
 			[button setRadius:defaultSprite.contentSize.width/2];
 	}
 }
+
+/*
+-(void) draw
+{
+    [super draw];
+    ccDrawCircle(self.anchorPointInPoints, 20, 0, 8, YES);
+    CGRect rect = [self boundingBox];
+    CGPoint vertices[4]={
+        ccp(rect.origin.x,rect.origin.y),
+        ccp(rect.origin.x+rect.size.width,rect.origin.y),
+        ccp(rect.origin.x+rect.size.width,rect.origin.y+rect.size.height),
+        ccp(rect.origin.x,rect.origin.y+rect.size.height),
+    };
+    ccDrawPoly(vertices, 4, YES);
+}
+*/
 
 @end

@@ -22,9 +22,7 @@
 	if( (self=[self init]) ) {
 		self.size = sz;
 		
-		color_.r = color.r;
-		color_.g = color.g;
-		color_.b = color.b;
+        color_ = [CCColor colorWithCcColor4b:color];
 		opacity_ = color.a;
 	}
 	return self;
@@ -43,10 +41,8 @@
 			// default blend function
 		blendFunc_ = (ccBlendFunc) { CC_BLEND_SRC, CC_BLEND_DST };
 		
-		color_.r =
-		color_.g =
-		color_.b = 0U;
-		opacity_ = 255U;
+        color_ = [CCColor colorWithWhite:0.0f alpha:1.0f];
+		opacity_ = 1.0f;
 		
 		squareVertices_ = (CGPoint*) malloc(sizeof(CGPoint)*(4));
 		if(!squareVertices_){
@@ -84,22 +80,22 @@
 
 - (void)draw
 {		
-	ccDrawSolidPoly(squareVertices_, 4, ccc4f(color_.r/255.0f, color_.g/255.0f, color_.b/255.0f, opacity_/255.0f));
+	ccDrawSolidPoly(squareVertices_, 4, [CCColor colorWithCcColor4f:ccc4f(color_.red/255.0f, color_.green/255.0f, color_.blue/255.0f, opacity_/255.0f)]);
 }
 
 #pragma mark CCRGBAProtocol
 
--(ccColor3B) color
+-(CCColor *) color
 {
 	return color_;
 }
 
--(void) setColor:(ccColor3B)color
+-(void) setColor:(CCColor *)color
 {
 	color_ = color;
 }
 
--(ccColor3B) displayedColor
+-(CCColor *) displayedColor
 {
 	return color_;
 }
@@ -109,22 +105,22 @@
 	return YES;
 }
 
--(void) updateDisplayedColor:(ccColor3B)color
+-(void) updateDisplayedColor:(ccColor4F)color
 {
-	[self setColor:color];
+	[self setColor:[CCColor colorWithCcColor4f:color]];
 }
 
--(GLubyte) opacity
+-(float) opacity
 {
 	return opacity_;
 }
 
--(void) setOpacity:(GLubyte)opacity
+-(void) setOpacity:(float)opacity
 {
 	opacity_ = opacity;
 }
 
--(GLubyte) displayedOpacity
+-(float) displayedOpacity
 {
 	return opacity_;
 }
@@ -134,7 +130,7 @@
 	return YES;
 }
 
--(void) updateDisplayedOpacity:(GLubyte)opacity
+-(void) updateDisplayedOpacity:(CGFloat)opacity
 {
 	[self setOpacity:opacity];
 }
@@ -160,7 +156,7 @@
 
 - (NSString*) description
 {
-	return [NSString stringWithFormat:@"<%@ = %8@ | Tag = %i | Color = %02X%02X%02X%02X | Size = %f,%f>", [self class], self, self.tag, color_.r, color_.g, color_.b, opacity_, size_.width, size_.height];
+	return [NSString stringWithFormat:@"<%@ = %8@ | Tag = %@ | Color = %02f%02f%02f%02f | Size = %f,%f>", [self class], self, self.name, color_.red, color_.green, color_.blue, opacity_, size_.width, size_.height];
 }
 
 @end

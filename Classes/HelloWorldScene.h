@@ -14,13 +14,12 @@
 @class SneakyButton;
 
 // HelloWorld Layer
-@interface HelloWorld : CCLayer
+@interface HelloWorld : CCScene
 {
 	SneakyJoystick *leftJoystick;
 	SneakyButton *rightButton;
 }
 
-// returns a Scene that contains the HelloWorld as the only child
-+(id) scene;
-
++ (HelloWorld *)scene;
+-(id) init;
 @end
