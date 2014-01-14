@@ -14,12 +14,12 @@
 
 - (void) onEnterTransitionDidFinish
 {
-    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1 swallowsTouches:YES];
+    //[[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1 swallowsTouches:YES];
 }
 
 - (void) onExit
 {
-    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    //[[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
 }
 
 -(id)initWithRect:(CGRect)rect{
@@ -31,12 +31,18 @@
 		status = 1; //defaults to enabled
 		active = NO;
 		value = 0;
-		isHoldable = 0;
-		isToggleable = 0;
+		isHoldable = NO;
+		isToggleable = NO;
 		radius = 32.0f;
 		rateLimit = 1.0f/120.0f;
-		
-		self.position = rect.origin;
+        
+		self.userInteractionEnabled = YES;
+        self.multipleTouchEnabled = NO;
+        
+        self.anchorPoint = ccp(0.5,0.5);
+		self.position = ccp((rect.size.width-rect.origin.x)/2, (rect.size.height-rect.origin.y)/2);
+        self.contentSize = rect.size;
+
 	}
 	return self;
 }
@@ -54,16 +60,15 @@
 }
 
 #pragma mark Touch Delegate
-
-- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-{
-	if (active) return NO;
+-(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+	if (active) return;
 	
 	CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView:[touch view]]];
 	location = [self convertToNodeSpace:location];
-		//Do a fast rect check before doing a circle hit check:
+    location = ccpSub(location, ccp(self.contentSize.width/2, self.contentSize.height/2));
+    //Do a fast rect check before doing a circle hit check:
 	if(location.x < -radius || location.x > radius || location.y < -radius || location.y > radius){
-		return NO;
+		return;
 	}else{
 		float dSq = location.x*location.x + location.y*location.y;
 		if(radiusSq > dSq){
@@ -74,19 +79,17 @@
 			}
 			if (isHoldable) value = 1;
 			if (isToggleable) value = !value;
-			return YES;
+			return;
 		}
 	}
-return NO;
 }
 
-- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
-{
+-(void)touchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
 	if (!active) return;
 	
 	CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView:[touch view]]];
 	location = [self convertToNodeSpace:location];
-		//Do a fast rect check before doing a circle hit check:
+    //Do a fast rect check before doing a circle hit check:
 	if(location.x < -radius || location.x > radius || location.y < -radius || location.y > radius){
 		return;
 	}else{
@@ -100,16 +103,14 @@ return NO;
 	}
 }
 
-- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-{
+-(void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
 	if (!active) return;
 	if (isHoldable) value = 0;
 	if (isHoldable||isToggleable) active = NO;
 }
 
-- (void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
-{
-	[self ccTouchEnded:touch withEvent:event];
+-(void)touchCancelled:(UITouch *)touch withEvent:(UIEvent *)event {
+	[self touchEnded:touch withEvent:event];
 }
 
 @end

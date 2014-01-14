@@ -8,14 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
-#import "CCNavigationViewController.h"
 
-@interface SneakyInput_0_4_0AppDelegate : NSObject <UIApplicationDelegate, CCDirectorDelegate>
+@interface SneakyInput_0_4_0AppDelegate : CCAppDelegate
 {
 }
 
-@property (nonatomic, strong) UIWindow *window;
-@property (readonly) CCNavigationViewController *navController;
-@property (weak, readonly) CCDirectorIOS *director;
 
 @end

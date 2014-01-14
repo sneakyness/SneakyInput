@@ -12,20 +12,18 @@
 @dynamic cascadeColorEnabled;
 @dynamic cascadeOpacityEnabled;
 
-+ (id) circleWithColor: (ccColor4B)color radius:(GLfloat)r
++ (id) circleWithColor: (CCColor *)color radius:(GLfloat)r
 {
 	return [[self alloc] initWithColor:color radius:r];
 }
 
-- (id) initWithColor:(ccColor4B)color radius:(GLfloat)r
+- (id) initWithColor:(CCColor *)color radius:(GLfloat)r
 {
 	if( (self=[self init]) ) {
 		self.radius	= r;
 		
-		color_.r = color.r;
-		color_.g = color.g;
-		color_.b = color.b;
-		opacity_ = color.a;
+        color_ = color;
+		opacity_ = color_.alpha;
 	}
 	return self;
 }
@@ -46,10 +44,8 @@
 			// default blend function
 		blendFunc_ = (ccBlendFunc) { CC_BLEND_SRC, CC_BLEND_DST };
 		
-		color_.r =
-		color_.g =
-		color_.b = 0U;
-		opacity_ = 255U;
+        color_ = [CCColor colorWithWhite:0.0f alpha:1.0f];
+		opacity_ = color_.alpha;
 		
 		circleVertices_ = (CGPoint*) malloc(sizeof(CGPoint)*(numberOfSegments));
 		if(!circleVertices_){
@@ -100,22 +96,22 @@
 
 - (void)draw
 {		
-	ccDrawSolidPoly(circleVertices_, numberOfSegments, ccc4f(color_.r/255.0f, color_.g/255.0f, color_.b/255.0f, opacity_/255.0f));
+	ccDrawSolidPoly(circleVertices_, numberOfSegments, color_);
 }
 
 #pragma mark CCRGBAProtocol
 
--(ccColor3B) color
+-(CCColor *) color
 {
 	return color_;
 }
 
--(void) setColor:(ccColor3B)color
+-(void) setColor:(CCColor *)color
 {
 	color_ = color;
 }
 
--(ccColor3B) displayedColor
+-(CCColor *) displayedColor
 {
 	return color_;
 }
@@ -125,22 +121,22 @@
 	return YES;
 }
 
--(void) updateDisplayedColor:(ccColor3B)color
+-(void) updateDisplayedColor:(ccColor4F)color
 {
-	[self setColor:color];
+	[self setColor:[CCColor colorWithCcColor4f:color]];
 }
 
--(GLubyte) opacity
+-(CGFloat) opacity
 {
 	return opacity_;
 }
 
--(void) setOpacity:(GLubyte)opacity
+-(void) setOpacity:(CGFloat)opacity
 {
 	opacity_ = opacity;
 }
 
--(GLubyte) displayedOpacity
+-(CGFloat) displayedOpacity
 {
 	return opacity_;
 }
@@ -150,7 +146,7 @@
 	return YES;
 }
 
--(void) updateDisplayedOpacity:(GLubyte)opacity
+-(void) updateDisplayedOpacity:(CGFloat)opacity
 {
 	[self setOpacity:opacity];
 }
@@ -178,7 +174,7 @@
 
 - (NSString*) description
 {
-	return [NSString stringWithFormat:@"<%@ = %8@ | Tag = %i | Color = %02X%02X%02X%02X | Radius = %1.2f>", [self class], self, self.tag, color_.r, color_.g, color_.b, opacity_, radius_];
+	return [NSString stringWithFormat:@"<%@ = %8@ | Tag = %@ | Color = %02f%02f%02f%02f | Radius = %1.2f>", [self class], self, self.name, color_.red, color_.green, color_.blue, opacity_, radius_];
 }
 
 @end

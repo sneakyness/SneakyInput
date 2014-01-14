@@ -18,8 +18,8 @@
 {
 	self = [super init];
 	if(self != nil){
-		self.backgroundSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 0, 0, 128) radius:100];
-		self.thumbSprite = [ColoredCircleSprite circleWithColor:ccc4(0, 0, 255, 200) radius:30];
+		self.backgroundSprite = [ColoredCircleSprite circleWithColor:[CCColor colorWithRed:1 green:0 blue:0 alpha:0.5] radius:100];
+		self.thumbSprite = [ColoredCircleSprite circleWithColor:[CCColor colorWithRed:0 green:0 blue:1 alpha:0.8] radius:30];
 		
 		self.joystick = [[SneakyJoystick alloc] initWithRect:CGRectMake(0.0f, 0.0f, self.contentSize.width, self.contentSize.height)];
 	}

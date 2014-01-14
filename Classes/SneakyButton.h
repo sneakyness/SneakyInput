@@ -8,7 +8,7 @@
 
 #import "cocos2d.h"
 
-@interface SneakyButton : CCNode <CCTouchOneByOneDelegate> {
+@interface SneakyButton : CCNode {
 	CGPoint center;
 	
 	float radius;

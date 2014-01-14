@@ -22,7 +22,7 @@
 		self.thumbSprite = nil;
 		self.joystick = nil;
 		
-		[self schedule:@selector(updatePositions)];
+		[self schedule:@selector(updatePositions) interval:1.0f/60.0f];
 	}
 	return self;
 }
@@ -37,6 +37,7 @@
 {
 	[super setContentSize:s];
 	backgroundSprite.contentSize = s;
+    backgroundSprite.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
 	joystick.joystickRadius = s.width/2;
 }
 
@@ -63,7 +64,8 @@
 	thumbSprite = aSprite;
 	if(aSprite){
 		[self addChild:thumbSprite z:1];
-		
+        thumbSprite.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
+
 		[joystick setThumbRadius:thumbSprite.contentSize.width/2];
 	}
 }
@@ -77,6 +79,7 @@
 	joystick = aJoystick;
 	if(aJoystick){
 		[self addChild:joystick z:2];
+        
 		if(thumbSprite)
 			[joystick setThumbRadius:thumbSprite.contentSize.width/2];
 		else
@@ -86,5 +89,21 @@
 			[joystick setJoystickRadius:backgroundSprite.contentSize.width/2];
 	}
 }
+
+/*
+-(void) draw
+{
+    [super draw];
+    ccDrawCircle(self.anchorPointInPoints, 20, 0, 8, YES);
+    CGRect rect = [self boundingBox];
+    CGPoint vertices[4]={
+        ccp(rect.origin.x,rect.origin.y),
+        ccp(rect.origin.x+rect.size.width,rect.origin.y),
+        ccp(rect.origin.x+rect.size.width,rect.origin.y+rect.size.height),
+        ccp(rect.origin.x,rect.origin.y+rect.size.height),
+    };
+    ccDrawPoly(vertices, 4, YES);
+}
+*/
 
 @end

@@ -17,7 +17,7 @@
 {
 	self = [super init];
 	if(self != nil){
-		self.backgroundSprite = [CCSprite spriteWithFile:@"DPad_BG.png"];
+		self.backgroundSprite = [CCSprite spriteWithImageNamed:@"DPad_BG.png"];
 		
 		self.joystick = [[SneakyJoystick alloc] initWithRect:CGRectMake(0.0f, 0.0f, self.contentSize.width, self.contentSize.height)];
 		joystick.thumbRadius = 0.0f;

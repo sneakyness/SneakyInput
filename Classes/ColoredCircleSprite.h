@@ -1,9 +1,9 @@
 #import "cocos2d.h"
 
-@interface ColoredCircleSprite : CCNode <CCRGBAProtocol, CCBlendProtocol> {
+@interface ColoredCircleSprite : CCNode {
 	float		radius_;
-	GLubyte		opacity_;
-	ccColor3B	color_;
+	float		opacity_;
+	CCColor	*color_;
 	
 	NSUInteger numberOfSegments;
     CGPoint *circleVertices_;
@@ -14,10 +14,10 @@
 @property (nonatomic,readwrite) float radius;
 
 /** creates a Circle with color and radius */
-+ (id) circleWithColor: (ccColor4B)color radius:(GLfloat)r;
++ (id) circleWithColor: (CCColor *)color radius:(GLfloat)r;
 
 /** initializes a Circle with color and radius */
-- (id) initWithColor:(ccColor4B)color radius:(GLfloat)r;
+- (id) initWithColor:(CCColor *)color radius:(GLfloat)r;
 
 - (BOOL) containsPoint:(CGPoint)point;
 
