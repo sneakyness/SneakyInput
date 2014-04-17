@@ -17,7 +17,6 @@ IRC: sneakyness irc.freenode.net
 	Sneakyjoystick
 	- A joystick for use with iPhone Game Development
 	- Independent of external libraries
-  - This project is generally updated to work with the latest trunk of Cocos2d-iPhone
-  - Special thanks to @tanis2000, who ported the code to work with Cocos2D iPhone v3 (develop-v3 branch)
-  - If you have implementation issues, PLEASE do not file issues, those are for actual issues with the code,
-    not your issue implementing this input framework. Email me instead and I promise I will help. 
+  	- This project is generally updated to work with the latest trunk of Cocos2d-iPhone
+  	- Special thanks to @tanis2000, who ported the code to work with Cocos2D iPhone v3 (develop-v3 branch)
+  	- If you have implementation issues, PLEASE do not file issues, those are for actual issues with the code, not your issue implementing this input framework. Email me instead and I promise I will help. 
