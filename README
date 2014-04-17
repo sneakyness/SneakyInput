@@ -1,1 +1,23 @@
-Special thanks to @tanis2000, who ported the code to work with Cocos2D iPhone v3 (develop-v3 branch)
+ _____                  _            ___                 _   _      _    
+/  ___|                | |          |_  |               | | (_)    | |   
+\ `--. _ __   ___  __ _| | ___   _    | | ___  _   _ ___| |_ _  ___| | __
+ `--. \ '_ \ / _ \/ _` | |/ / | | |   | |/ _ \| | | / __| __| |/ __| |/ /
+/\__/ / | | |  __/ (_| |   <| |_| /\__/ / (_) | |_| \__ \ |_| | (__|   < 
+\____/|_| |_|\___|\__,_|_|\_\\__, \____/ \___/ \__, |___/\__|_|\___|_|\_\
+                              __/ |             __/ |                    
+                             |___/             |___/                     
+-------------------------------------------------------------------------
+WIKI: http://wiki.github.com/sneakyness/SneakyJoystick/
+HTTP SRC: http://github.com/sneakyness/SneakyJoystick.git
+GIT: git://github.com/sneakyness/SneakyJoystick.git
+Email: SneakyJoystick@Sneakyness.com 
+IRC: sneakyness irc.freenode.net
+-------------------------------------------------------------------------
+
+	Sneakyjoystick
+	- A joystick for use with iPhone Game Development
+	- Independent of external libraries
+  - This project is generally updated to work with the latest trunk of Cocos2d-iPhone
+  - Special thanks to @tanis2000, who ported the code to work with Cocos2D iPhone v3 (develop-v3 branch)
+  - If you have implementation issues, PLEASE do not file issues, those are for actual issues with the code,
+    not your issue implementing this input framework. Email me instead and I promise I will help. 
