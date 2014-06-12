@@ -68,6 +68,7 @@ deadRadius;
 
 - (void) onEnterTransitionDidFinish
 {
+    [super onEnterTransitionDidFinish];
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
     //[[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1 swallowsTouches:YES];
 #elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
@@ -76,6 +77,7 @@ deadRadius;
 
 - (void) onExit
 {
+    [super onExit];
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
     //[[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
 #elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)

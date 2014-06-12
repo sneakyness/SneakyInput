@@ -1,6 +1,6 @@
 #import "cocos2d.h"
 
-@interface ColoredCircleSprite : CCNode {
+@interface ColoredCircleSprite : CCDrawNode {
 	float		radius_;
 	float		opacity_;
 	CCColor	*color_;
