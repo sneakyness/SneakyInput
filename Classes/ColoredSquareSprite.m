@@ -83,6 +83,7 @@
 
 - (void)draw
 {
+    [self clear];
     CCColor *fillColor = [CCColor colorWithCcColor4f:ccc4f(color_.red/255.0f, color_.green/255.0f, color_.blue/255.0f, opacity_/255.0f)];
     [self drawPolyWithVerts:squareVertices_ count:4 fillColor:fillColor borderWidth:0 borderColor:fillColor];
 }
@@ -116,18 +117,18 @@
     [self draw];
 }
 
--(float) opacity
+-(CGFloat) opacity
 {
 	return opacity_;
 }
 
--(void) setOpacity:(float)opacity
+-(void) setOpacity:(CGFloat)opacity
 {
 	opacity_ = opacity;
     [self draw];
 }
 
--(float) displayedOpacity
+-(CGFloat) displayedOpacity
 {
 	return opacity_;
 }

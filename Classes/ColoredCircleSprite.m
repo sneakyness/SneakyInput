@@ -99,6 +99,7 @@
 
 - (void)draw
 {
+    [self clear];
     [self drawPolyWithVerts:circleVertices_ count:numberOfSegments fillColor:color_ borderWidth:0 borderColor:color_];
 }
 
