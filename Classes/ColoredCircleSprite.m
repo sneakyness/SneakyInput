@@ -24,6 +24,7 @@
 		
         color_ = color;
 		opacity_ = color_.alpha;
+        [self draw];
 	}
 	return self;
 }
@@ -42,7 +43,7 @@
         //self.shaderProgram = [[CCShaderCache sharedShaderCache] programForKey:kCCShader_PositionColor];
         
 			// default blend function
-		blendFunc_ = (ccBlendFunc) { CC_BLEND_SRC, CC_BLEND_DST };
+		blendFunc_ = (ccBlendFunc) { GL_ONE, GL_ONE_MINUS_SRC_ALPHA };
 		
         color_ = [CCColor colorWithWhite:0.0f alpha:1.0f];
 		opacity_ = color_.alpha;
@@ -81,12 +82,14 @@
 	}
 	
 	[self updateContentSize];
+    [self draw];
 }
 
 -(void) setContentSize: (CGSize) size
 {
 	self.radius	= size.width/2;
 	[self updateContentSize];
+    [self draw];
 }
 
 - (void) updateContentSize
@@ -95,8 +98,9 @@
 }
 
 - (void)draw
-{		
-	ccDrawSolidPoly(circleVertices_, numberOfSegments, color_);
+{
+    [self clear];
+    [self drawPolyWithVerts:circleVertices_ count:numberOfSegments fillColor:color_ borderWidth:0 borderColor:color_];
 }
 
 #pragma mark CCRGBAProtocol
@@ -109,6 +113,7 @@
 -(void) setColor:(CCColor *)color
 {
 	color_ = color;
+    [self draw];
 }
 
 -(CCColor *) displayedColor
@@ -124,6 +129,7 @@
 -(void) updateDisplayedColor:(ccColor4F)color
 {
 	[self setColor:[CCColor colorWithCcColor4f:color]];
+    [self draw];
 }
 
 -(CGFloat) opacity
@@ -134,6 +140,7 @@
 -(void) setOpacity:(CGFloat)opacity
 {
 	opacity_ = opacity;
+    [self draw];
 }
 
 -(CGFloat) displayedOpacity
@@ -149,6 +156,7 @@
 -(void) updateDisplayedOpacity:(CGFloat)opacity
 {
 	[self setOpacity:opacity];
+    [self draw];
 }
 
 #pragma mark CCBlendProtocol
@@ -161,6 +169,7 @@
 -(void) setBlendFunc:(ccBlendFunc)blendFunc
 {
 	blendFunc_ = blendFunc;
+    [self draw];
 }
 
 #pragma mark Touch

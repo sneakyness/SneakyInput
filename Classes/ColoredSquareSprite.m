@@ -24,6 +24,7 @@
 		
         color_ = [CCColor colorWithCcColor4b:color];
 		opacity_ = color.a;
+        [self draw];
 	}
 	return self;
 }
@@ -39,7 +40,7 @@
 		size_				= CGSizeMake(10.0f, 10.0f);
 		
 			// default blend function
-		blendFunc_ = (ccBlendFunc) { CC_BLEND_SRC, CC_BLEND_DST };
+		blendFunc_ = (ccBlendFunc) { GL_ONE, GL_ONE_MINUS_SRC_ALPHA };
 		
         color_ = [CCColor colorWithWhite:0.0f alpha:1.0f];
 		opacity_ = 1.0f;
@@ -66,11 +67,13 @@
 	squareVertices_[3] = ccp(self.position.x + size_.width,self.position.y + size_.height);
 	
 	[self updateContentSize];
+    [self draw];
 }
 
 -(void) setContentSize: (CGSize)sz
 {
 	self.size = sz;
+    [self draw];
 }
 
 - (void) updateContentSize
@@ -79,8 +82,10 @@
 }
 
 - (void)draw
-{		
-	ccDrawSolidPoly(squareVertices_, 4, [CCColor colorWithCcColor4f:ccc4f(color_.red/255.0f, color_.green/255.0f, color_.blue/255.0f, opacity_/255.0f)]);
+{
+    [self clear];
+    CCColor *fillColor = [CCColor colorWithCcColor4f:ccc4f(color_.red/255.0f, color_.green/255.0f, color_.blue/255.0f, opacity_/255.0f)];
+    [self drawPolyWithVerts:squareVertices_ count:4 fillColor:fillColor borderWidth:0 borderColor:fillColor];
 }
 
 #pragma mark CCRGBAProtocol
@@ -93,6 +98,7 @@
 -(void) setColor:(CCColor *)color
 {
 	color_ = color;
+    [self draw];
 }
 
 -(CCColor *) displayedColor
@@ -108,19 +114,21 @@
 -(void) updateDisplayedColor:(ccColor4F)color
 {
 	[self setColor:[CCColor colorWithCcColor4f:color]];
+    [self draw];
 }
 
--(float) opacity
+-(CGFloat) opacity
 {
 	return opacity_;
 }
 
--(void) setOpacity:(float)opacity
+-(void) setOpacity:(CGFloat)opacity
 {
 	opacity_ = opacity;
+    [self draw];
 }
 
--(float) displayedOpacity
+-(CGFloat) displayedOpacity
 {
 	return opacity_;
 }
@@ -133,6 +141,7 @@
 -(void) updateDisplayedOpacity:(CGFloat)opacity
 {
 	[self setOpacity:opacity];
+    [self draw];
 }
 
 #pragma mark CCBlendProtocol
@@ -145,6 +154,7 @@
 -(void) setBlendFunc:(ccBlendFunc)blendFunc
 {
 	blendFunc_ = blendFunc;
+    [self draw];
 }
 
 #pragma mark Touch
